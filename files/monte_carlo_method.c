@@ -13,7 +13,7 @@ struct point{
 };
 typedef struct point point;
 
-void input()
+void input(void)
 {
     printf("start of the interval a[pi]: ");
     scanf("%lf", &a);
@@ -25,7 +25,7 @@ void input()
     scanf("%d", &n);
 }
 
-point gen_random_point()
+point gen_random_point(void)
 {
     point rand_point;
 
@@ -38,7 +38,7 @@ point gen_random_point()
     return rand_point;
 }
 
-double monte_carlo()
+double monte_carlo(void)
 {
     double area = (b-a)*2*M_PI;
     int points_hit = 0;

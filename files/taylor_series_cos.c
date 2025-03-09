@@ -7,7 +7,7 @@
 double a,b,dx=1.0;
 int n;
 
-void input()
+void input(void)
 {
     printf("start of the interval a[pi]: ");
     scanf("%f", &a);
@@ -35,7 +35,7 @@ double cos_taylor_series(double x)
     return ans;
 }
 
-void calc()
+void calc(void)
 {
     printf("\n%-10s %-20s %-20s\n", "x", "cos(x) (expected)", "cos(x) (Taylor series)");
     for(float i = a; i <= b; i+=dx){
