@@ -14,7 +14,6 @@ void linspace(double v[],double start, double stop, int n){
 void add(double v1[], double v2[], int n){
     for(int i=0; i < n; i++){
         v1[i]+=v2[i];
-
     }
 }
 
