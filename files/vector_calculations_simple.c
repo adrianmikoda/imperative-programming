@@ -1,5 +1,4 @@
-//calculation of simple vector operations
-
+//calculation of simple operations on vectors
 #include <stdio.h>
 
 void linspace(double v[],double start, double stop, int n){
@@ -51,10 +50,10 @@ void print_vector(double v[], int n){
     for(int i=0; i<n; i++){
         printf("%.2lf ", v[i]);
     }
+    printf("\n");
 }
 
 int main(void){
-
     int F,n;
     scanf("%d", &F);
     scanf("%d", &n);
@@ -84,7 +83,7 @@ int main(void){
         read_vector(v1,n);
         read_vector(v2,n);
 
-        printf("%.2lf", dot_product(v1, v2, n));
+        printf("%.2lf\n", dot_product(v1, v2, n));
         break;
 
     case 4: //multiply_by_scalar
@@ -102,7 +101,10 @@ int main(void){
         range(v1, n, start, step);
         print_vector(v1, n);
         break;
-        
+
+    default:
+        printf("Unknown operation %d", F);
+        break;
     }
     return 0;
 }
