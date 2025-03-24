@@ -98,7 +98,7 @@ int cbuff_state(void) {
 }
 
 void cbuff_print(void) {
-	for (int i = 0; i < len; i++){
+	for (int i = out; i < len; i++){
 		printf("%d ", cbuff[(out+i)%CBUFF_SIZE]);
 	}
 	printf("\n");
