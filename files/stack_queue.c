@@ -49,7 +49,7 @@ int queue_push(int in_nr) { // in_nr clients try to enter the queue
 }
 
 int queue_pop(int out_nr) { // out_nr clients leave the queue
-	if (out_nr > QUEUE_SIZE) return UNDERFLOW;
+	if (out_nr > in) return UNDERFLOW;
 	for (int i = out_nr; i < QUEUE_SIZE; i++) { //moving remaining numebrs to the front
 		queue[i-out_nr] = queue[i];
 	}
@@ -98,7 +98,7 @@ int cbuff_state(void) {
 }
 
 void cbuff_print(void) {
-	for (int i = out; i < len; i++){
+	for (int i = 0; i < len; i++){
 		printf("%d ", cbuff[(out+i)%CBUFF_SIZE]);
 	}
 	printf("\n");
