@@ -222,5 +222,4 @@ int main(void){
 		while ((ch = getchar()) != '\n');
 		system("cls");
 	} while(to_do != 0);
-
 }
