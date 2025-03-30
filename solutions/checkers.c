@@ -24,14 +24,12 @@ void start(char board[][N], const int n) {
             board[i][j] = filler;
         }
     }
-    int line = 0;
-    for (line = 0; line < 4; line++) {
+    for (int line = 0; line < 4; line++) {
         for (int col = line%2; col < n; col+=2) {
             board[line][col] = '1';
         }
     }
-    line += n-8;
-    for (line; line < n; line++) {
+    for (int line = n-1; n-1-line < 4; line--) {
         for (int col = line%2; col < n; col+=2) {
             board[line][col] = '2';
         }
@@ -103,7 +101,6 @@ int capture(char board[][N], const int i, const int j, const int n) {
     }
     return captured;
 }
-
 
 int main(void) {
     char board[N][N];
