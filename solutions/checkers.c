@@ -30,7 +30,7 @@ void start(char board[][N], const int n) {
         }
     }
     for (int line = n-1; n-1-line < 4; line--) {
-        for (int col = line%2; col < n; col+=2) {
+        for (int col = n-2+line%2; col >= 0; col-=2) {
             board[line][col] = '2';
         }
     }
