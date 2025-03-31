@@ -18,7 +18,7 @@ int real_mod(int a, int b) {
     return ((a % b) + b) % b;
 }
 
-void print_board(int** board, const int n){
+void print_board(int **board, const int n){
     for (int i = 0; i < n; i++){
         for (int j = 0; j < n; j++){
             printf("%d ", board[i][j]);
@@ -31,8 +31,8 @@ void print_ant(const Ant ant) {
     printf("%d %d %c", ant.line, ant.column, directions[ant.direction]);
 }
 
-void init_board(int*** board, const int n){
-    *board = (int **)malloc(n*sizeof(int *));
+void init_board(int ***board, const int n){
+    *board = (int**)malloc(n*sizeof(int *));
     for (int i =0; i < n; i++) {
         (*board)[i] = (int *)malloc(n*sizeof(int));
     }
@@ -43,14 +43,14 @@ void init_board(int*** board, const int n){
     }
 }
 
-void free_board(int** board, const int n){
+void free_board(int **board, const int n){
     for (int i = 0; i < n; i++){
         free(board[i]);
     }
     free(board);
 }
 
-void ant_move(int*** board, const int n, Ant* ant){
+void ant_move(int ***board, const int n, Ant* ant){
     int operation = (*board)[ant->line][ant->column];
     int move[2];
     switch (operation){
@@ -102,7 +102,7 @@ void ant_move(int*** board, const int n, Ant* ant){
     ant->column = real_mod(ant->column, n);
 }
 
-void ant_simulation(int** board, const int n, Ant* ant, const int steps) {
+void ant_simulation(int **board, const int n, Ant *ant, const int steps) {
     ant->line = 0;
     ant->column = 0;
     ant->direction = 3;
@@ -113,7 +113,7 @@ void ant_simulation(int** board, const int n, Ant* ant, const int steps) {
 }
 
 int main(void){
-    int** board;
+    int **board;
 	int n, steps;
 	unsigned seed;
     Ant ant;
