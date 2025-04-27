@@ -34,7 +34,7 @@ void print_ant(const Ant ant) {
 void init_board(int ***board, const int n){
     *board = (int**)malloc(n*sizeof(int *));
     for (int i =0; i < n; i++) {
-        (*board)[i] = (int *)malloc(n*sizeof(int));
+        (*board)[i] = (int*)malloc(n*sizeof(int));
     }
     for (int i = 0; i < n; i++){
         for (int j = 0; j < n; j++){
