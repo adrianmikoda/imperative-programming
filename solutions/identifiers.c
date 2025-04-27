@@ -20,15 +20,6 @@ const char *keywords[] = {
 	"unsigned", "void", "volatile", "while"
 };
 
-// void print_line(char line[]){
-//     int i = 0;
-//         while (line[i] != '\0' && line[i] != '\n' && i < MAX_LINE-1){
-//             printf("%c", line[i]);
-//             i++;
-//         }
-//     printf("\n");
-// }
-
 int escape_char_counter(char line[], int current_pos){
     int counter = 0;
     while (current_pos >= 0 && line[current_pos] == '\\'){
@@ -40,21 +31,21 @@ int escape_char_counter(char line[], int current_pos){
 
 int check_for_line_comment(char line[], int current_pos){
     if (current_pos > 0 && line[current_pos-1] == '/' && line[current_pos] == '/'){
-        return 1; //found line comment
+        return 1;
     }
     return 0;
 }
 
 int check_for_block_opening(char line[], int current_pos){
     if (current_pos > 0 && line[current_pos-1] == '/' && line[current_pos] == '*'){
-        return 1; //found block comment openinig
+        return 1;
     }
     return 0;
 }
 
 int check_for_block_ending(char line[], int current_pos){
     if (current_pos > 0 && line[current_pos-1] == '*' && line[current_pos] == '/'){
-        return 1; //found block comment ending
+        return 1;
     }
     return 0;
 }
@@ -68,18 +59,15 @@ void find_comments_in_line(char line[], int *inside_quotation_marks, int *opened
         }
         else if (*inside_quotation_marks == 0){
             if(check_for_block_opening(line, current_pos) && *opened_block_comments == 0){
-                //printf("\nfound real block comment opening");
                 (*opened_block_comments)++;
                 (*block_comment_counter)++;
             }
             if(check_for_line_comment(line, current_pos) && *opened_block_comments == 0){
                 (*line_comment_counter)++;
-                //printf("found real line comment\n");
                 return;
             }
             if(check_for_block_ending(line, current_pos)){
                 (*opened_block_comments)--;
-                //printf("found real block comment ending\n");
             }
         }
         current_pos++;
@@ -87,14 +75,11 @@ void find_comments_in_line(char line[], int *inside_quotation_marks, int *opened
 }
 
 void find_comments(int *line_comment_counter, int *block_comment_counter){
-    //FILE *file = fopen("test.txt", "r");
     int inside_quotation_marks = 0;
     int inside_block_comment = 0;
     char line[MAX_LINE];
     while (feof(stdin) == 0){
         fgets(line, MAX_LINE, stdin);
-        //printf("new line:  ");
-        //print_line(line);
         find_comments_in_line(line, &inside_quotation_marks, &inside_block_comment, line_comment_counter, block_comment_counter);
     }
 }
@@ -141,7 +126,6 @@ void handle_word(char line[], int start, int length, int *ident_number){
 }
 
 void find_idents_in_line(char line[], int *inside_quotation_marks, int *inside_apostrophe, int *opened_block_comments, int *ident_number){
-    //printf("words:   ");
     int current_pos = 0;
     int word_starting_pos = 0;
     int word_length = 0;
@@ -160,20 +144,17 @@ void find_idents_in_line(char line[], int *inside_quotation_marks, int *inside_a
             if (line[current_pos] == '"' && (escape_char_counter(line, current_pos-1))%2 == 0){
                 *inside_quotation_marks = ((*inside_quotation_marks)+1)%2;
             }
-            if (*inside_quotation_marks == 0 && line[current_pos] == '\'' && (escape_char_counter(line, current_pos-1))%2 == 0){
+            else if (*inside_quotation_marks == 0 && line[current_pos] == '\'' && (escape_char_counter(line, current_pos-1))%2 == 0){
                 *inside_apostrophe = ((*inside_apostrophe)+1)%2;
             }
             else if (*inside_quotation_marks == 0 && *inside_apostrophe == 0){
                 if(check_for_block_opening(line, current_pos) && *opened_block_comments == 0){
-                    //printf("\nfound real block comment opening");
                     (*opened_block_comments)++;
                 }
                 if(check_for_line_comment(line, current_pos) && *opened_block_comments == 0){
-                    //printf("\nfound real line comment\n");
                     return;
                 }
                 if(check_for_block_ending(line, current_pos)){
-                    //printf("\nfound real block comment ending\n");
                     (*opened_block_comments)--;
                 }
             }
@@ -185,7 +166,6 @@ void find_idents_in_line(char line[], int *inside_quotation_marks, int *inside_a
 
 int find_idents(){
     int ident_number = 0;
-    //FILE *file = fopen("test.txt", "r");
     int inside_quotation_marks = 0;
     int inside_apostrophe = 0;
     int inside_block_comment = 0;
@@ -193,8 +173,6 @@ int find_idents(){
     while (feof(stdin) == 0){
         line[0] = '\0';
         fgets(line, MAX_LINE, stdin);
-        //printf("\nnew line:  ");
-        //print_line(line);
         find_idents_in_line(line, &inside_quotation_marks, &inside_apostrophe, &inside_block_comment, &ident_number);
     }
     return ident_number;
