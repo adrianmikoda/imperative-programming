@@ -68,12 +68,12 @@
 		while (first < last) {
 			int pivot = partition(array, first, last);
 			if (pivot-first < last-pivot) {
-				quicksort(array, first, pivot-1);
+				quicksort(array, first, pivot);
 				first = pivot+1;
 			}
 			else {
 				quicksort(array, pivot+1, last);
-				last = pivot-1;
+				last = pivot;
 			}
 		}
 	}
@@ -122,8 +122,7 @@
 	}
 
 	void swap(int *array_p, int i, int j){
-		int *pointer1 = array_p+i;
-		int *pointer2 = array_p+j;
+		int *pointer1 = array_p+i, *pointer2 = array_p+j;;
 		int temp = *pointer1;
 		*pointer1 = *pointer2;
 		*pointer2 = temp;
@@ -149,16 +148,16 @@
 		}
 	}
 
-	void quicksort(int array[], int first, int last){
+	void quicksort(int *array, int first, int last){
 		while (first < last) {
 			int pivot = partition(array, first, last);
 			if (pivot-first < last-pivot) {
-				quicksort(array, first, pivot-1);
+				quicksort(array, first, pivot);
 				first = pivot+1;
 			}
 			else {
 				quicksort(array, pivot+1, last);
-				last = pivot-1;
+				last = pivot;
 			}
 		}
 	}
