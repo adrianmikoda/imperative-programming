@@ -438,5 +438,5 @@ int main(void) {
             printf("NOTHING TO DO FOR %d\n", command);
             break;
     }
-    return EXIT_SUCCESS;
+    return 0;
 }
