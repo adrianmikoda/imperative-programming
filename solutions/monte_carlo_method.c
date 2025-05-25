@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
-double a,b;
+double a, b;
 int n;
 
 struct point{
