@@ -114,8 +114,8 @@ void ant_simulation(int **board, const int n, Ant *ant, const int steps) {
 
 int main(void){
     int **board;
-	int n, steps;
-	unsigned seed;
+    int n, steps;
+    unsigned seed;
     Ant ant;
 
     scanf("%d %d %d", &n, &seed, &steps);

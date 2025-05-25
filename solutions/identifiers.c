@@ -10,14 +10,14 @@
 
 char identifiers[MAX_IDS][MAX_ID_LEN];
 const char *keywords[] = {
-	"auto", "break", "case", "char",
-	"const", "continue", "default", "do",
-	"double", "else", "enum", "extern",
-	"float", "for", "goto", "if",
-	"int", "long", "register", "return",
-	"short", "signed", "sizeof", "static",
-	"struct", "switch", "typedef", "union",
-	"unsigned", "void", "volatile", "while"
+    "auto", "break", "case", "char",
+    "const", "continue", "default", "do",
+    "double", "else", "enum", "extern",
+    "float", "for", "goto", "if",
+    "int", "long", "register", "return",
+    "short", "signed", "sizeof", "static",
+    "struct", "switch", "typedef", "union",
+    "unsigned", "void", "volatile", "while"
 };
 
 int escape_char_counter(char line[], int current_pos){
