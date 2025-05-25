@@ -85,5 +85,5 @@ int main() {
     if (answer < k) {
         printf("-1\n");
     }
-    return EXIT_SUCCESS;
+    return 0;
 }
