@@ -4,7 +4,7 @@
 #include <math.h>
 #include <stdio.h>
 
-double a,b,dx=1.0;
+double a, b, dx=1.0;
 int n;
 
 void input(void)
