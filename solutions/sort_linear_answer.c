@@ -89,7 +89,6 @@ void* bsearch2 (const void *key, const void *base, const size_t n_items,
             }
         }
         *insertion_p = (void *)(arr + a * size);
-
         return NULL;
 }
 
@@ -146,6 +145,7 @@ int read_goods(Article *tab, FILE *stream, const int sorted) {
 void print_art(const void *tab, const int n, const char* article_name){
     const Article *tab_article = (Article *)tab;
     Article article;
+    
     for (int i = 0; i < n; ++i){
         article = tab_article[i];
         if(strcmp(article.name, article_name) == 0){

@@ -21,17 +21,6 @@ typedef struct {
     Date exp_date;
 } Article;
 
-void print_product(const Article product){
-        printf("%s %f %d %d.%d.%d\n", product.name, product.price, product.amount, product.exp_date.day, product.exp_date.month, product.exp_date.year);
-}
-
-void print_tab(const Article *tab, int np){
-    printf("\n");
-    for (int i =0; i < np; i++){
-        print_product(tab[i]);
-    }
-}
-
 int read_int() {
     char buff[RECORD_MAX];
     int value;
@@ -56,6 +45,7 @@ Date unpack_time(const time_t time){
     d.year = (int)date.tm_year + 1900;
     d.month = (int)date.tm_mon + 1;
     d.day = (int)date.tm_mday;
+
     return d;
 }
 
@@ -116,7 +106,6 @@ void* bsearch2 (const void *key, const void *base, const size_t n_items,
             }
         }
         *insertion_p = (void *)(arr + a * size);
-
         return NULL;
 }
 
@@ -134,7 +123,7 @@ void add_record(Article *tab, int *article_count, const CompareFp compare, const
         }
         else{
             Article *insertion_point_food = (Article *)insertion_p;
-
+            
             int insert_index = (insertion_point_food - tab);
             for (int i = *article_count; i > insert_index; --i) {
                 tab[i] = tab[i-1];
@@ -174,12 +163,14 @@ void print_art(const void *tab, const int n, const char* art_name){
     const Article *tab_article = (Article *)tab;
     Article art;
     strcpy(art.name, art_name);
+
     void *bsearch_answer = bsearch(art_name, tab, n, sizeof(Article), cmp_name);
     if (bsearch_answer == NULL) return;
+
     Article *bsearch_answer_article = (Article *)bsearch_answer;
     int index = bsearch_answer_article-tab_article;
-
     Article article;
+
     while (index > 0){
         if (cmp_name(tab_article[index-1].name, art.name) == 0) index--;
         else break;
@@ -207,8 +198,8 @@ float calculate_value(Article *tab_article, const size_t n, const Date curr_date
 
     Article *bsearch_answer_article = (Article *)bsearch_answer;
     int index = bsearch_answer_article-tab_article;
-
     Article article;
+
     for (int i = index-1; i >= 0; --i){
         article = tab_article[i];
         time_t article_time = create_time(article.exp_date);
@@ -221,7 +212,6 @@ float calculate_value(Article *tab_article, const size_t n, const Date curr_date
         if(article_time == future_time) value += article.price*article.amount;
         else break;
     }
-    
     return value;
 }
 
